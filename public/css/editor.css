@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#editor{
+    width: 100vw;
+    height: 300px;
+    border: 1px solid #eee;
+}
+.black {
+    background-color: black;
+}
+
+.black .toolbar{
+    background-color: black;
+    border-bottom: 1px solid #e0e0e0;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.black .toolbar .tool-btn{
+    width: 50px;
+    text-align: center;
+    color: white;
+    background-color: black;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s linear;
+
+}
+
+
+
+.white .toolbar{
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.white .toolbar .tool-btn{
+    width: 50px;
+    text-align: center;
+    color: black;
+    background-color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s linear;
+
+}
+
+ .tool-btn:hover{
+    background-color: #e0e0e0;
+}
+
+ .editor-content:focus{
+   border:10px solid #eee;
+}
+
+.theme-btn{
+    margin-left: auto;
+    padding: 0 15px;
+    
+}
+.black .theme-btn{
+    color: white;
+
+}
+.theme-btn input{
+    width:60px;
+    height: 20px;
+    border: 1px solid #eee;
+    background-color: white;
+    border-radius: 20px;
+    -webkit-appearance: none;
+    position: relative;
+    margin: 0 10px;
+    outline: 0;
+    user-select: none;
+    cursor: pointer;
+    transition: all .8s linear;
+    box-sizing: border-box;
+}
+
+.theme-btn input:before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    background-color: #000;
+    height: 18px;
+    border-radius: 50%;
+    transition: all .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.theme-btn input:checked{
+    background-color: #000;
+}
+
+.theme-btn input:checked:before{
+    left: calc(60px - 18px);
+    background-color: #fff;
+}
+
+.editor-content{
+    height: calc(300px - 30px);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.black .editor-content{
+    color: white;
+}
+
+img[align-type="right"]{
+   height: 100px;
+   text-align: right;
+   position: absolute;
+   right: 0;
+}

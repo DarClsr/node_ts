@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css :root</title>
+    <style>
+        :root{
+            --base:red;
+            --spacing:20px;
+            --blur:20px;
+        }
+        .mark{
+            color: var(--base);
+        }
+
+        img{
+            width: 300px;
+            background: var(--base);
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+            display: block;
+        }
+        .controls{
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+        .control{
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>css :root 
+
+    <span class="mark">js</span>
+    </h1>
+    <hr>
+
+    <div class="controls">
+        <div class="control">
+            <span>space</span>
+            <input type="range" value="20" name="spacing" data-size="px"/>
+        </div>
+        <div class="control">
+            <span>blur</span>
+            <input type="range" value="20" name="blur" data-size="px"/>
+        </div>
+        <div class="control">
+            <span>color base</span>
+            <input type="color" name="base" value="red" />
+        </div>
+    </div>
+
+    <img src="http://127.0.0.1:3000/img/01.jpg" />
+
+    <script type="module">
+        import {getDom} from "../js/index.js";
+        window.onload=function(){
+            const inputs=getDom("input");
+            console.log(inputs)
+            inputs.forEach(input=>{
+               input.addEventListener("change",handler)
+            })
+        }
+
+        function handler(e){
+            const suffix=this.dataset.size||"";
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix)
+        }
+
+        var age=90;
+        function b(){
+            this.age=70;
+            return function (){
+                return this.age;
+            }
+        }
+
+        const a=new b();
+        console.log(a)
+        alert(a())
+    </script>
+
+
+    
+</body>
+</html>

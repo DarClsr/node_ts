@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+
+        }
+        .main{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            flex-direction: column;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1,hr{
+            color: white;
+            width: 100%;
+        }
+
+        h1{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .clock{
+            width: 200px;
+            height: 200px;
+            border: 10px solid white;
+            position: relative;
+            margin-top: 50px;
+        }
+        .clock .hand{
+            background-color: white;
+            height: 5px;
+            border-radius:3px;
+            position: absolute;
+            left: 10px;
+            width: 90px;
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+            transform-origin: right;
+            transform:rotate(90deg)
+        }
+    </style>
+</head>
+<body>
+    
+
+    <section class="main">
+        <div class="time">
+            <h1>js clock
+                <span class="text"></span>
+            </h1>
+             <hr>
+        </div>
+        <div class="clock">
+            <div class="hand hour-hand"></div>
+            <div class="hand minute-hand"></div>
+            <div class="hand second-hand"></div>
+        </div>
+    </section>
+
+    <script type="module">
+        import {getDom} from "../js/index.js";
+
+        window.onload=function(){
+            
+            const seconds=getDom(".second-hand");
+            const minutes=getDom(".minute-hand");
+            const hours=getDom(".hour-hand");
+            const text=getDom(".text");
+            function setDate(){
+                const now = new Date();
+                const secondsTime=now.getSeconds();
+                const rate=(secondsTime/60)*360+90;
+                const minutesTime=now.getMinutes();
+                const minutes_rate=(minutesTime/60)*360+90;
+                const hoursTime=now.getHours();
+                const hours_rate=((hoursTime-12)/12)*360+90;
+                seconds.style.transform=`rotate(${rate}deg)`;
+                minutes.style.transform=`rotate(${minutes_rate}deg)`;
+                hours.style.transform=`rotate(${hours_rate}deg)`;
+                text.innerText=(hoursTime>10?hoursTime:`0${hoursTime}`)+":"+(minutesTime>10?minutesTime:`0${minutesTime}`)+":"+(secondsTime>10?secondsTime:`0${secondsTime}`)
+            }
+
+            setInterval(setDate,1000)
+
+        }
+    </script>
+    
+</body>
+</html>
